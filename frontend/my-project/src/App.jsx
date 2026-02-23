@@ -8,10 +8,9 @@ const App = () => {
 
   const notify = () => toast.success('Here is your toast.');
   return (
-    // <div className="relative h-full w-full">
-    <div data-theme="coffee">
-      {/* <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]" /> */}
-      <button className="btn btn-outline" onClick={notify}>Make me a toast</button>
+    <div data-theme="coffee" className="relative h-full w-full">
+      <div className="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_60%,#00FF9D40_100%)]" />
+      {/* <button className="btn btn-outline" onClick={notify}>Make me a toast</button> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/create" element={<CreatePage />} />
