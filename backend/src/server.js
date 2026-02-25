@@ -16,13 +16,15 @@ const PORT = 5001;
 const URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/thoughtsphere';
 
 // middlewares
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+}));
 app.use(express.json());
 app.use(rateLimiter);
 app.use(morgan('dev'));
 
 // routes
-app.use('/api/v1', noteRouter);
+app.use('/api/v1/notes', noteRouter);
 
 // health check
 app.get('/', (_, res) => {
