@@ -43,6 +43,7 @@ const Home = () => {
       <Navbar />
       {isRatelimited && <RateLimitedUI />}
 
+      {/* Fix: Prevent NotesNotFound from showing before API data loads (avoid UI flicker on reload) */}
       {!loading && notes.length === 0 && !isRatelimited && <NotesNotFound />}
 
       <div className='max-w-6xl mx-auto px-4 mt-6'>
