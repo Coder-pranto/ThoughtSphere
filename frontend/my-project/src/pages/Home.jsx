@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import Loader from "../components/Loading";
 import NoteCard from "../components/NoteCard";
 import NotesNotFound from "../components/NotesNotFound";
+import api from "../lib/axios";
 const Home = () => {
   const [isRatelimited, setIsRatelimited] = useState(false);
   const [notes, setNotes] = useState([]);
@@ -15,10 +16,9 @@ const Home = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const notes = await axios.get('http://localhost:5001/api/v1/notes');
+        const notes = await api.get('/notes');
         console.log(notes.data);
         setNotes(notes.data);
-        setLoading(false);
         setIsRatelimited(false);
 
       } catch (error) {
@@ -42,15 +42,15 @@ const Home = () => {
     <div className='min-h-screen'>
       <Navbar />
       {isRatelimited && <RateLimitedUI />}
-      
-      {notes.length === 0 && !isRatelimited && <NotesNotFound />}
+
+      {!loading && notes.length === 0 && !isRatelimited && <NotesNotFound />}
 
       <div className='max-w-6xl mx-auto px-4 mt-6'>
         {loading && <Loader />}
 
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
           {notes.map((note) => (
-            <NoteCard key={note._id} note={note} />
+            <NoteCard key={note._id} note={note} setNotes={setNotes} />
           ))}
         </div>
       </div>
