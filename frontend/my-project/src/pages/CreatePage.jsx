@@ -54,7 +54,7 @@ const CreatePage = () => {
               <form onSubmit={handleSubmit}>
                 <div className='form-control mb-4'>
                   <label className='label'>
-                    <span className='label-text'>Title</span>
+                    <span className='label-text p-2'>Title</span>
                   </label>
                   <input
                     type='text'
@@ -66,7 +66,7 @@ const CreatePage = () => {
                 </div>
                 <div className='form-control mb-4'>
                   <label className='label'>
-                    <span className='label-text'>Content</span>
+                    <span className='label-text p-2'>Content</span>
                   </label>
                   <textarea
                     placeholder='Write your note here...'

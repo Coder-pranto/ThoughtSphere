@@ -6,7 +6,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const connectDB = require('./config/database');
 const noteRouter =  require('./routes/notesRoutes');
-const rateLimiter = require('./middleware/rateLimiter');
+
 
 const app = express();
 
@@ -20,7 +20,6 @@ app.use(cors({
   origin: 'http://localhost:5173',
 }));
 app.use(express.json());
-app.use(rateLimiter);
 app.use(morgan('dev'));
 
 // routes

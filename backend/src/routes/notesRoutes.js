@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const rateLimiter = require('../middleware/rateLimiter');
+
 const {
   createNote,
   getAllNotes,
@@ -8,11 +10,12 @@ const {
   deleteNote,
 } = require('../controllers/notesController');
 
-
-router.post('/', createNote);
 router.get('/', getAllNotes);
 router.get('/:id', getNoteById);
-router.patch('/:id', updateNote);
-router.delete('/:id', deleteNote);
+
+router.post('/', rateLimiter, createNote);
+router.patch('/:id', rateLimiter, updateNote);
+router.delete('/:id', rateLimiter, deleteNote);
+
 
 module.exports = router;
